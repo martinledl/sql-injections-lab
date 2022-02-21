@@ -29,6 +29,11 @@
     margin: 0;
 }
 
-input {
-    outline: none;
+input, button {
+    outline: none !important;
+}
+
+input, button:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }

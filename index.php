@@ -21,7 +21,6 @@ include "include/applySettings.php";
     <main class="container py-3 p-sm-3">
         <h1 class="text-center my-5">SQL Injections Lab</h1>
         <section class="mb-5">
-            <h2 class="fw-light text-center">Základní</h2>
             <div class="d-flex justify-content-evenly flex-wrap">
                 <div class="card m-2" style="width: 20rem">
                     <div class="card-body position-relative pb-5">
@@ -48,20 +47,6 @@ include "include/applySettings.php";
             </div>
 
         </section>
-
-        <section class="mb-5">
-            <h2 class="fw-light text-center">Pokročilé</h2>
-            <div class="d-flex justify-content-evenly flex-wrap">
-                <div class="card m-2" style="width: 20rem;">
-                     <div class="card-body position-relative pb-5">
-                        <h3 class="card-title">Level 3</h3>
-                        <p class="card-text">Pro prolomení tohoto přihlašovacího formuláře je zapotřebí trochu složitějšího útoku.</p>
-                        <a href="/levels/3.php" class="btn btn-primary position-absolute bottom-0 mb-3">Otevřít &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-        </section>
     </main>
 
     <!-- Settings button -->
@@ -84,6 +69,12 @@ include "include/applySettings.php";
                             Zobrazit SQL query
                         </label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="showAttackBank" <?= $showAttackBank ? "checked" : "" ?>>
+                        <label class="form-check-label" for="showAttackBank">
+                            Zobrazit nabídku útoků
+                        </label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Zavřít</button>
@@ -101,7 +92,8 @@ include "include/applySettings.php";
                 url: "/helpers/settings.php",
                 type: "POST",
                 data: {
-                    showQueries: $("#showQueries").is(':checked')
+                    showQueries: $("#showQueries").is(':checked'),
+                    showAttackBank: $("#showAttackBank").is(':checked')
                 }
             })
         });

