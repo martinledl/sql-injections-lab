@@ -186,6 +186,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
                     $.ajax({
                         url: "/level_helpers/login.php",
                         type: "POST",
+                        dataType: "json",
                         data: {
                             username: username,
                             password: password

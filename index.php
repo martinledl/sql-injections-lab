@@ -75,6 +75,12 @@ include "include/applySettings.php";
                             Zobrazit nabídku útoků
                         </label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="safeCode" <?= $safeCode ? "checked" : "" ?>>
+                        <label class="form-check-label" for="safeCode">
+                            Zabezpečit tuto webovou stránku
+                        </label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Zavřít</button>
@@ -93,7 +99,8 @@ include "include/applySettings.php";
                 type: "POST",
                 data: {
                     showQueries: $("#showQueries").is(':checked'),
-                    showAttackBank: $("#showAttackBank").is(':checked')
+                    showAttackBank: $("#showAttackBank").is(':checked'),
+                    safeCode: $("#safeCode").is(':checked')
                 }
             })
         });
