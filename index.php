@@ -18,17 +18,11 @@ include "include/applySettings.php";
 </head>
 
 <body>
+    <!-- List of levels -->
     <main class="container py-3 p-sm-3">
         <h1 class="text-center my-5">SQL Injections Lab</h1>
         <section class="mb-5">
             <div class="d-flex justify-content-evenly flex-wrap">
-                <div class="card m-2" style="width: 20rem">
-                    <div class="card-body position-relative pb-5">
-                        <h3 class="card-title">Intro</h3>
-                        <p class="card-text">of the card's content.</p>
-                        <a href="/intro" class="btn btn-primary position-absolute bottom-0 mb-3">Otevřít &rarr;</a>
-                    </div>
-                </div>
                 <div class="card m-2" style="width: 20rem;">
                     <div class="card-body position-relative pb-5">
                         <h3 class="card-title">E-shop</h3>
@@ -54,7 +48,7 @@ include "include/applySettings.php";
         <i class="fas fa-cog fs-4"></i>
     </button>
 
-    <!-- Modal -->
+    <!-- Settings modal -->
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -93,6 +87,7 @@ include "include/applySettings.php";
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script>
+        // Send POST request with setting values
         $("#saveSettings").click(function() {
             $.ajax({
                 url: "/helpers/settings.php",

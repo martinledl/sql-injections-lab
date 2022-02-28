@@ -22,6 +22,7 @@ include "../include/applySettings.php";
 <body>
     <a href="/index.php" class="m-2 btn btn-secondary">&larr; Zpět</a>
 
+    <!-- Search bar and list of results -->
     <main class="container text-center">
         <form action="" method="post" id="search" class="input-group mt-5">
             <input type="search" class="form-control" placeholder="Vyhledávejte produkty v databázi" id="searchField" required>
@@ -32,6 +33,7 @@ include "../include/applySettings.php";
         <h6 class="m-0" id="query" style="visibility: <?= $showQueries ? 'visible' : 'hidden' ?>;"></h6>
     </main>
 
+    <!-- List of predefined SQLi attacks -->
     <?php if($showAttackBank): ?>
     <div class="p-2 position-absolute bottom-0 start-0 ms-2 mb-2 acordion" style="width: 350px;" id="examples">
         <div class="accordion-item">
@@ -116,6 +118,7 @@ include "../include/applySettings.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
     <script>
+        // Create list of results (or error message) and render them in DOM
         function renderResults(response, error = false) {
             let results = response.results;
             if (response.query !== undefined) {
@@ -146,6 +149,7 @@ include "../include/applySettings.php";
             document.getElementById('results').innerHTML = html;
         }
 
+        // Make a POST request to search the database and capture the response
         $(document).ready(function() {
             $("#search").submit(function(event) {
                 event.preventDefault();
@@ -167,6 +171,7 @@ include "../include/applySettings.php";
             });
         });
 
+        // Fill in code from attack list
         function fillInCode(code) {
             search = document.getElementById("searchField");
             search.value = code;

@@ -3,8 +3,10 @@ session_start();
 
 include "../include/applySettings.php";
 
+// By default user is not logged in
 $user_logged_in = false;
 
+// Check for user details in session meaning a user is logged in
 if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
     $user_logged_in = true;
     $username = $_SESSION["username"];
@@ -27,6 +29,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
 </head>
 
 <body>
+    <!-- Top bar with controls and user datils after login -->
     <header class="border-bottom p-2 d-flex justify-content-between align-items-center">
         <a href="#" class="m-2 btn btn-secondary" onclick="resetLevel()">&larr; Zpět</a>
         <?php if ($user_logged_in) : ?>
@@ -37,6 +40,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         <?php endif ?>
     </header>
 
+    <!-- Login form -->
     <main class="container text-center form">
         <form class="mt-5 m-auto" style="width: 30vw;" method="post" id="login">
             <div class="form-floating">
@@ -55,6 +59,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         <h6 class="m-0" id="query" style="visibility: <?= $showQueries ? 'visible' : 'hidden' ?>;"></h6>
     </main>
 
+    <!-- Checkbox to enable special character checking -->
     <div class="p-2 position-absolute bottom-0 end-0 form-check me-2 mb-2">
         <input class="form-check-input" type="checkbox" value="" id="disallowSpecialChars">
         <label class="form-check-label" for="disallowSpecialChars">
@@ -62,6 +67,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         </label>
     </div>
 
+    <!-- List of predefined SQLi attacks -->
     <?php if($showAttackBank): ?>
     <div class="p-2 position-absolute bottom-0 start-0 ms-2 mb-2 acordion" style="width: 350px;" id="examples">
         <div class="accordion-item">
@@ -131,6 +137,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
     <script>
+        // Display query if it's set in session storage
         window.onload = function() {
             let query = sessionStorage.getItem("lastQuery");
             if (query !== null && query !== undefined) {
@@ -139,6 +146,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
             }
         }
 
+        // Fill in code from attack list
         function fillInCode(code) {
             username = document.getElementById("username");
             password = document.getElementById("password");
@@ -146,10 +154,12 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
             password.value = "a"
         }
 
+        // Create element containing last database query
         function displayQuery(query) {
             document.getElementById("query").innerHTML = `Query: <code>${query}</code>`;
         }
 
+        // Reset level and its session storage after leaving the page
         function resetLevel() {
             sessionStorage.removeItem("lastQuery");
 
@@ -162,6 +172,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
             });
         }
 
+        // Whitelist for login form
         function validateForm(input) {
             let valid = /[^a-zA-Z0-9\-]/;
 
@@ -173,15 +184,16 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         }
 
 
-
         $(document).ready(function() {
             $("#login").submit(function(event) {
                 event.preventDefault();
 
+                // Get credentials entered in the form
                 let username = $("#username").val();
                 let password = $("#password").val();
                 let disallowSpecialChars = $("#disallowSpecialChars").is(':checked');
 
+                // Send post request to log the user in and capture the response
                 if ((disallowSpecialChars && validateForm(username)) || disallowSpecialChars === false) {
                     $.ajax({
                         url: "/level_helpers/login.php",
@@ -212,6 +224,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
                 }
             });
 
+            // Send GET request to log the user out and refresh the page
             $("#logout").submit(function(event) {
                 event.preventDefault();
 

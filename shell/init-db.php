@@ -1,4 +1,5 @@
 <?php
+// Prepare database folder and the .db file
 $db_dir = __DIR__ . "/../db/";
 $dbfilename = $db_dir . "database.db";
 
@@ -24,7 +25,7 @@ try {
 // Foreign key support
 $pdo->exec("PRAGMA foreign_keys = ON;");
 
-// Shop
+// Create shop items table
 $stm = $pdo->prepare("CREATE TABLE IF NOT EXISTS shop_items (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
@@ -52,7 +53,7 @@ $stm = $pdo->prepare("INSERT INTO shop_items (title, price) VALUES ('Mikrofon', 
 $stm->execute();
 
 
-// Users
+// Create users table
 $stm = $pdo->prepare("CREATE TABLE IF NOT EXISTS users (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL UNIQUE,
@@ -60,7 +61,7 @@ $stm = $pdo->prepare("CREATE TABLE IF NOT EXISTS users (
 )");
 $stm->execute();
 
-// Insert users
+// Insert default users
 
 $stm = $pdo->prepare("INSERT INTO users (username, password) VALUES ('steve', :password)");
 $stm->bindValue("password", hash("sha256", "daisy"), PDO::PARAM_STR);
