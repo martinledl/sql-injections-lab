@@ -39,7 +39,7 @@ include "../include/applySettings.php";
         <div class="accordion-item">
             <h2 class="accordion-header" id="example1">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    Show all products
+                    Zobrazit všechny produkty v databázi
                 </button>
             </h2>
             <div class="container">
@@ -54,7 +54,7 @@ include "../include/applySettings.php";
         <div class="accordion-item">
             <h2 class="accordion-header" id="example2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Show all tables in database
+                    Zobrazit všechny tabulky databáze
                 </button>
             </h2>
             <div class="container">
@@ -69,7 +69,7 @@ include "../include/applySettings.php";
         <div class="accordion-item">
             <h2 class="accordion-header" id="example3">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Get admin user password hash
+                    Získat hash hesla uživatele admin
                 </button>
             </h2>
             <div class="container">
@@ -84,7 +84,7 @@ include "../include/applySettings.php";
         <div class="accordion-item">
             <h2 class="accordion-header" id="example4">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    Get all credentials from users table
+                    Získat všechny přihlašovací údaje z databázové tabulky uživatelů
                 </button>
             </h2>
             <div class="container">
@@ -99,7 +99,7 @@ include "../include/applySettings.php";
         <div class="accordion-item">
             <h2 class="accordion-header" id="example5">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Display database version
+                    Zobrazit verzi databáze
                 </button>
             </h2>
             <div class="container">

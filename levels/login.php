@@ -73,7 +73,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="example1">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    Login as a random user
+                    Přihlásit se jako nespecifikovaný uživatel
                 </button>
             </h2>
             <div class="container">
@@ -88,7 +88,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="example2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Login as admin user
+                    Přihlásit se jako uživatel admin
                 </button>
             </h2>
             <div class="container">
@@ -103,7 +103,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="example3">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Get admin user password hash
+                    Získat hash hesla uživatele admin
                 </button>
             </h2>
             <div class="container">
@@ -118,7 +118,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["username"])) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="example4">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    Make the website sleep for 3 seconds
+                    Uspat stránku na 3 sekundy
                 </button>
             </h2>
             <div class="container">
